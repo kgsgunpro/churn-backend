@@ -1,10 +1,27 @@
-age = 25
-salary = 45000.5
-is_active = True
-tenure = 10
-def churn_risk(tenure):
-    if tenure < 12:
-        return "High risk"
-    else:
-        return "Low risk"
-print(age, salary, is_active ,churn_risk(tenure))
+
+def main():
+    
+    def churn_risk(tenure):
+        if tenure < 12:
+            return "High risk"
+        else:
+            return "Low risk"
+    customer_db = {
+        101:{'id':101, 'name':'raju', 'tenure':5},
+        102:{'id':102, 'name':'ravi', 'tenure':15},
+        103:{'id':103, 'name':'ram', 'tenure':8},
+        104:{'id':104, 'name':'rinku', 'tenure':20}
+
+    }
+    lookup_ids = (101, 103, 105,102)
+    for cid in lookup_ids:
+        try:
+            customer = customer_db[cid]
+            risk = churn_risk(customer['tenure'])
+            print(f"Customer {customer['name']} (ID: {customer['id']}) has a {risk} of churn.")
+        except KeyError:
+            print(f"Customer ID {cid} not found in the database.")
+if __name__ == "__main__":
+    main()
+
+            
